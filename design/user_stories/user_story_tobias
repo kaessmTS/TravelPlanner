@@ -1,0 +1,20 @@
+Title: Plan a new trip
+
+Primary Actors: User
+Secondary Actors: -
+
+Preconditions: -
+Postconditions: A mobilephone.
+
+Flow:
+1. The user enters the information about a city he/she wants to enter
+2. the system responds with the specific date
+3. the user enters the time he/she wants to stay at the destination
+4. the user enters with which different mobility things he/she wants to travel
+5. the system responds with a planned trip
+
+
+Alternative flows:
+-
+
+Information Requirements: User-ID, Destination, length, allowed mobility
