@@ -1,0 +1,24 @@
+name: Spellcheck README
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Install yarn and dependencies
+      run: |
+        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.17
+        export PATH=$HOME/.yarn/bin:$PATH
+        yarn install
+
+    - name: Spellcheck README
+      run: yarn spellcheck
