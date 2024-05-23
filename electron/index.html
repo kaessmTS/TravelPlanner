@@ -12,5 +12,15 @@
         Chromium <span id="chrome-version"></span>,
         and Electron <span id="electron-version"></span>.
     </p>
+    <body>
+        <input type="text" id="inputData" placeholder="Enter data">
+        <button id="sendButton">Send Data</button>
+      
+        <script>
+          document.getElementById('sendButton').addEventListener('click', () => {
+            const data = document.getElementById('inputData').value;
+            window.electron.sendData(data);
+          });
+        </script>
 </body>
 </html>

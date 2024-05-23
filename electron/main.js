@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron/main')
+const { app, BrowserWindow,ipcMain } = require('electron/main')
 const path = require('node:path')
+const chatGPTcall = require('./code.js')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -28,3 +29,8 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+// Listen for messages from the renderer process
+ipcMain.on('send-data', (event, data) => {
+  chatGPTcall(data); // Call the tmp function from code.js with the received data
+});
