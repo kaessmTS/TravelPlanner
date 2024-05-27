@@ -12,6 +12,9 @@ export class OpenaiService {
       apiKey: '',
       dangerouslyAllowBrowser: true // Enable browser-like environment
     };
+    if(openaiOptions.apiKey === '') {
+      console.error('Please provide an OpenAI API key');
+    }
     this.openai = new OpenAI(openaiOptions);
   }
 
