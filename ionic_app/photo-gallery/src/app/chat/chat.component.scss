@@ -6,7 +6,6 @@
   background: transparent !important; /* Ensure chat content has a transparent background */
   z-index: 2; /* Ensure chat content is above the background image */
 
-<<<<<<< HEAD
   ion-list {
     flex: 1; /* Allow the message list to take up available space */
     width: 100%;
@@ -35,36 +34,19 @@
     word-wrap: break-word;
     border-radius: 10px 10px 10px 0; /* Rounded corners */
     padding: 10px;
-=======
-  ion-item {
-    --inner-padding-start: 0;
-    --inner-padding-end: 0;
-    display: flex;
-    flex-direction: column;
-    background: transparent !important; /* Ensure ion-item has a transparent background */
-  }
-
-  .chat-message {
-    max-width: 75%;
-    display: inline-block;
->>>>>>> 53d168281a29d6070f15a6ea5b08c57371493543
   }
 
   .right-align {
     justify-content: flex-end;
     text-align: right;
     align-self: flex-end;
-<<<<<<< HEAD
     background-color: transparent; /* Background color for sent messages */
     border-radius: 10px 10px 0 10px; /* Rounded corners */
-=======
->>>>>>> 53d168281a29d6070f15a6ea5b08c57371493543
   }
 
   .left-align {
     text-align: left;
     align-self: flex-start;
-<<<<<<< HEAD
     background-color: transparent; /* Background color for received messages */
     border-radius: 10px 10px 10px 0; /* Rounded corners */
   }
@@ -94,7 +76,5 @@
 
   ion-button {
     margin-left: 10px;
-=======
->>>>>>> 53d168281a29d6070f15a6ea5b08c57371493543
   }
 }
