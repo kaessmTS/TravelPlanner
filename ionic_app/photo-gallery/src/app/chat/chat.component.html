@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 <ion-content class="chat-content">
   <!-- Display chat messages -->
   <ion-list lines="none">
     <ion-item *ngFor="let message of latestMessages(); let i = index" [ngClass]="{'right-align': message.isResponse, 'left-align': !message.isResponse, 'blurred-message': i === 0}">
+=======
+
+<ion-content class="chat-content">
+  <!-- Display chat messages -->
+  <ion-list lines="none">
+    <ion-item *ngFor="let message of messages" [ngClass]="{'right-align': message.isResponse, 'left-align': !message.isResponse}">
+>>>>>>> 53d168281a29d6070f15a6ea5b08c57371493543
       <ion-label class="chat-message">{{ message.text }}</ion-label>
     </ion-item>
   </ion-list>
 
+<<<<<<< HEAD
   <!-- Input box for sending messages -->
   <div class="input-container">
     <ion-item class="input-item">
@@ -13,4 +22,10 @@
       <ion-button slot="end" (click)="sendMessage()">Send</ion-button>
     </ion-item>
   </div>
+=======
+  <ion-item>
+    <ion-input placeholder="Type your message" [(ngModel)]="newMessage" (keydown.enter)="sendMessage()"></ion-input>
+    <ion-button slot="end" (click)="sendMessage()">Send</ion-button>
+  </ion-item>
+>>>>>>> 53d168281a29d6070f15a6ea5b08c57371493543
 </ion-content>

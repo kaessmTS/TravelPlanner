@@ -31,9 +31,12 @@ export class ChatComponent {
       });
     }
   }
+<<<<<<< HEAD
 
   // Function to get the latest 3 messages
   latestMessages() {
     return this.messages.slice(-3);
   }
+=======
+>>>>>>> 53d168281a29d6070f15a6ea5b08c57371493543
 }
