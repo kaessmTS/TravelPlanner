@@ -1,17 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Tsinghua Auditorium
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="content-container">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
+  
+  <div class="image-container">
+    <img src="assets/backgroundBuildings/building_3.jpg" alt="Building Image" class="building-image">
+    <div class="image-overlay"></div>
+  </div>
+  
+  <div class="overlay-content">
+    <app-chat></app-chat>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  </div>
 </ion-content>

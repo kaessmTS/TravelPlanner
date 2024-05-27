@@ -1,17 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      The Main Building
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="content-container">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- Image displayed inside ion-content -->
+  <div class="image-container">
+    <img src="assets/backgroundBuildings/building_1.jpg" alt="Building Image" class="building-image">
+    <div class="image-overlay"></div>
+  </div>
+
+  <div class="overlay-content">
+    <app-chat></app-chat>
+  
+  </div>
 </ion-content>

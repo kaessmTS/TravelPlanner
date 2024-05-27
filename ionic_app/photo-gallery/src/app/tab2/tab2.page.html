@@ -1,17 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Tsinghua Xuetang
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"  class="content-container">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+ <!-- Image displayed inside ion-content -->
+ <div class="image-container">
+  <img src="assets/backgroundBuildings/building_2.jpg" alt="Building Image" class="building-image">
+  <div class="image-overlay"></div>
+</div>
+
+<div class="overlay-content">
+  <app-chat></app-chat>
+</div>
 </ion-content>
