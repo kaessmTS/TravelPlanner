@@ -14,11 +14,12 @@ export class TabsPage {
   constructor(private openaiService: OpenaiService, private menu: MenuController, private router: Router) {}
 
   async sendQuestion() {
-    const completion = await this.openaiService.chatGPT(this.question);
+    const completion = await this.openaiService.chatGPT(this.question, '');
     console.log(completion);
   }
 
   navigateTo(url: string) {
+    this.openaiService.clearConversationHistory();
     this.router.navigateByUrl(url);
     this.menu.close(); // Close the menu after navigation
   }

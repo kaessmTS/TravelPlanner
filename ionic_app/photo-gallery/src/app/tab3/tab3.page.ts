@@ -9,4 +9,7 @@ export class Tab3Page {
 
   constructor() {}
 
+  ionViewWillEnter() {
+    localStorage.setItem('selectedTab', 'tab3');
+  }
 }

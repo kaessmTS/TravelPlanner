@@ -9,4 +9,7 @@ export class Tab1Page {
 
   constructor() {}
 
+  ionViewWillEnter() {
+    localStorage.setItem('selectedTab', 'tab1');
+  }
 }
