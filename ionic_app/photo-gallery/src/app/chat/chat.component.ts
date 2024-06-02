@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenaiService } from '../openai.service';
+import { DalleImageService } from '../services/dalle-image.service';
 
 @Component({
   selector: 'app-chat',
@@ -7,13 +8,15 @@ import { OpenaiService } from '../openai.service';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
+  imageUrl: string = "";
   messages: { text: string, isResponse?: boolean }[] = []; // Array to store chat messages with isResponse flags
   newMessage: string = ''; // Variable to store new message
   hiddenMessage: string = ''; // Variable to store the hidden message based on the page
   currentTime: string = ''; // Variable to store the current time
   timeInterval: any; // Variable to store the interval reference
+  
 
-  constructor(private openaiService: OpenaiService) {}
+  constructor(private openaiService: OpenaiService, private dalleImageService: DalleImageService) {}
 
   ngOnInit() {
     this.updateTime(); // Update the time initially
@@ -75,5 +78,14 @@ export class ChatComponent implements OnInit {
   // Function to get the latest 3 messages
   latestMessages() {
     return this.messages.slice(-3);
+  }
+
+  async generateImage() {
+    try {
+      this.imageUrl = await this.dalleImageService.generateCartoonCharacterImage();
+      console.log('Generated Image URL:', this.imageUrl);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
 }

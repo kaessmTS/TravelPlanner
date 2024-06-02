@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientOptions, OpenAI} from "openai";
 import { ChatCompletionMessageParam } from 'openai/resources';
+import { environment } from '../environments/environment';  // Import environment
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class OpenaiService {
 
   constructor() {
     const openaiOptions: ClientOptions = {
-      apiKey: '',
+      apiKey: environment.openaiApiKey,
       dangerouslyAllowBrowser: true // Enable browser-like environment
     };
     if (openaiOptions.apiKey === '') {
