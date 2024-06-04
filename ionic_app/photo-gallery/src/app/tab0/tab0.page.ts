@@ -4,17 +4,18 @@ import { DalleImageService } from '../services/dalle-image.service';  // Adjust 
 import { TitleService } from '../services/title.service';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-tab0',
+  templateUrl: 'tab0.page.html',
+  styleUrls: ['tab0.page.scss']
 })
-export class Tab1Page implements OnInit{
+export class Tab0Page implements OnInit{
   imageUrls: string[] = [];
+  selectedImageIndex: number | null = null;
 
   constructor(private dalleImageService: DalleImageService, private titleService: TitleService) {}
 
   ionViewWillEnter() {
-    localStorage.setItem('selectedTab', 'tab1');
+    localStorage.setItem('selectedTab', 'tab0');
   }
 
   async generateImages() {
@@ -33,7 +34,13 @@ export class Tab1Page implements OnInit{
     }
   }
   ngOnInit() {
-    // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
-    this.titleService.setTitle('The Main Building');
+    this.generateImages(); // UNCOMMENT THIS LINE TO GENERATE IMAGES
+    this.titleService.setTitle('Choose Your Character');
+  }
+  ngOnChanges() {
+    this.titleService.setTitle('Choose Your Character');
+  }
+  selectImage(index: number) {
+    this.selectedImageIndex = index;
   }
 }

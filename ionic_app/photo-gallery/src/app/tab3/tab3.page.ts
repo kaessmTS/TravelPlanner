@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TitleService } from '../services/title.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,9 +8,13 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private titleService: TitleService) {}
 
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab3');
+  }
+  ngOnInit() {
+    // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
+    this.titleService.setTitle('Tsinghua Auditorium');
   }
 }
