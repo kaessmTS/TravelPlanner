@@ -55,15 +55,19 @@
     filter: blur(1px); /* Apply blur effect */
   }
 
-  ion-item.input-item {
-    position: fixed;
+  .input-container {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    position: absolute;
+    bottom: 2%;
+    justify-content: center;
+  }
+
+  ion-item.input-item {
     background: rgba(255, 255, 255, 0.7) !important; /* Set the background color to white */
     border-radius: 10px;
     padding: 5px 10px;
     width: 90%; /* Adjust the width as needed */
-    bottom: 5%;
   }
 
   ion-input {
