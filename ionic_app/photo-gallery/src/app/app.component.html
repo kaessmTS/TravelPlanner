@@ -5,6 +5,12 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>{{ title }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button *ngIf="!isTab0" (click)="onButtonClick()" class="character-btn">
+          <ion-icon name="accessibility"></ion-icon>
+          <ion-title class="character-title">Set a Character</ion-title>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-content>
