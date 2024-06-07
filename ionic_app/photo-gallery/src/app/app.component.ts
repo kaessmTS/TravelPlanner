@@ -25,8 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   onButtonClick() {
-    console.log('Button clicked!');
-    this.router.navigateByUrl('/tabs/tab0')
-    // Add your button click handling logic here
+    // console.log('Button clicked!');
+    this.router.navigate(['/tabs/tab0'], { queryParams: { previousTab: this.router.url } })
   }
 }

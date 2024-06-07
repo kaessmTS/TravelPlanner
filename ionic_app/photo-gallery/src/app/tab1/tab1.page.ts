@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DalleImageService } from '../services/dalle-image.service';  // Adjust the path as necessary
 import { TitleService } from '../services/title.service';
+import { SelectedImageService } from '../services/selected-image.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,8 +11,13 @@ import { TitleService } from '../services/title.service';
 })
 export class Tab1Page implements OnInit{
   imageUrls: string[] = [];
+  imageUrl!: string;
 
-  constructor(private dalleImageService: DalleImageService, private titleService: TitleService) {}
+  constructor(
+    private dalleImageService: DalleImageService, 
+    private titleService: TitleService,
+    private selectedImageService: SelectedImageService
+  ) {}
 
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab1');
@@ -35,5 +41,7 @@ export class Tab1Page implements OnInit{
   ngOnInit() {
     // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
     this.titleService.setTitle('The Main Building');
+    // this.imageUrl = this.selectedImageService.getSelectedImage();
+    // console.log(this.imageUrl)
   }
 }

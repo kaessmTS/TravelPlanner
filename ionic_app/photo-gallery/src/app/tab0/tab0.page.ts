@@ -1,7 +1,9 @@
 // import { Component } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DalleImageService } from '../services/dalle-image.service';  // Adjust the path as necessary
 import { TitleService } from '../services/title.service';
+import { SelectedImageService } from '../services/selected-image.service';
 
 @Component({
   selector: 'app-tab0',
@@ -11,8 +13,14 @@ import { TitleService } from '../services/title.service';
 export class Tab0Page implements OnInit{
   imageUrls: string[] = [];
   selectedImageIndex: number | null = null;
+  previousTab!: string;
 
-  constructor(private dalleImageService: DalleImageService, private titleService: TitleService) {}
+  constructor(private dalleImageService: DalleImageService, 
+    private titleService: TitleService,
+    private selectedImageService: SelectedImageService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab0');
@@ -36,11 +44,19 @@ export class Tab0Page implements OnInit{
   ngOnInit() {
     this.generateImages(); // UNCOMMENT THIS LINE TO GENERATE IMAGES
     this.titleService.setTitle('Choose Your Character');
+    this.route.queryParams.subscribe(params => { // Get the previous tab to know where to go after choosing the character
+      this.previousTab = params['previousTab'];
+    });
   }
-  ngOnChanges() {
-    this.titleService.setTitle('Choose Your Character');
-  }
+  // Select a character
   selectImage(index: number) {
-    this.selectedImageIndex = index;
+    this.selectedImageIndex = index; // Remember the index of chosen image
+    this.selectedImageService.setSelectedImage(this.imageUrls[index]);
+  }
+  // Submit the choice of a character
+  onButtonClick() {
+    // console.log('Button clicked!');
+    this.router.navigateByUrl(this.previousTab)
+    // this.router.navigate([this.previousTab], { queryParams: { imageUrl: this.router.url } })
   }
 }
