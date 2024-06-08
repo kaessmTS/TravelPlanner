@@ -9,6 +9,7 @@ export class DalleImageService {
 
   private apiKey: string = environment.openaiApiKey;  // Replace with your OpenAI API key
   private apiEndpoint: string = 'https://api.openai.com/v1/images/generations';
+  private imageUrls: string[] | null = null;
 
   constructor() { }
 
@@ -31,5 +32,13 @@ export class DalleImageService {
       console.error('Error generating image:', error);
       throw new Error('Failed to generate image');
     }
+  }
+
+  setImageUrls(urls: string[]) {
+    this.imageUrls = urls;
+  }
+
+  getImageUrls(): string[] | null {
+    return this.imageUrls;
   }
 }

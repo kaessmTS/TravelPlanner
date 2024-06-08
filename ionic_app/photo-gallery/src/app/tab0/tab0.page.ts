@@ -1,4 +1,3 @@
-// import { Component } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DalleImageService } from '../services/dalle-image.service';  // Adjust the path as necessary
@@ -10,10 +9,11 @@ import { SelectedImageService } from '../services/selected-image.service';
   templateUrl: 'tab0.page.html',
   styleUrls: ['tab0.page.scss']
 })
-export class Tab0Page implements OnInit{
+export class Tab0Page implements OnInit {
   imageUrls: string[] = [];
   selectedImageIndex: number | null = null;
   previousTab!: string;
+  loading: boolean = true;
 
   constructor(private dalleImageService: DalleImageService, 
     private titleService: TitleService,
@@ -28,6 +28,7 @@ export class Tab0Page implements OnInit{
   }
 
   async generateImages() {
+    this.loading = true;
     try {
       const imagePromises = [
         this.dalleImageService.generateCartoonCharacterImage(),
@@ -37,13 +38,23 @@ export class Tab0Page implements OnInit{
       ];
 
       this.imageUrls = await Promise.all(imagePromises);
+      this.dalleImageService.setImageUrls(this.imageUrls);
       console.log('Generated Image URLs:', this.imageUrls);
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      this.loading = false;
     }
   }
   ngOnInit() {
-    this.generateImages(); // UNCOMMENT THIS LINE TO GENERATE IMAGES
+    const savedImageUrls = this.dalleImageService.getImageUrls();
+    if (savedImageUrls) {
+      this.imageUrls = savedImageUrls;
+      this.loading = false;
+    } else {
+      this.generateImages();
+    }
+
     this.route.queryParams.subscribe(params => { // Get the previous tab to know where to go after choosing the character
       this.previousTab = params['previousTab'];
     });
@@ -55,10 +66,13 @@ export class Tab0Page implements OnInit{
   }
   // Submit the choice of a character
   onButtonClick() {
-    // console.log('Button clicked!');
-    // this.router.navigateByUrl(this.previousTab)
     const selectedImageUrl = this.selectedImageService.getSelectedImage();
-    console.log('Image: ' + selectedImageUrl)
-    this.router.navigate([this.previousTab], { queryParams: { imageUrl: selectedImageUrl } });
+    const previousUrlTree = this.router.parseUrl(this.previousTab);
+    const previousUrlPath = previousUrlTree.root.children['primary'].segments.map(segment => segment.path).join('/');
+    
+    console.log('Navigating to:', previousUrlPath);
+    console.log('With image URL:', selectedImageUrl);
+
+    this.router.navigate([previousUrlPath], { queryParams: { imageUrl: selectedImageUrl } });
   }
 }

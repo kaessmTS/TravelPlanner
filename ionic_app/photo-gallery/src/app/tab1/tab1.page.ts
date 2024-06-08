@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: 'tab1.page.html',
   styleUrls: ['../shared/tabs.styles.scss']
 })
-export class Tab1Page implements OnInit{
+export class Tab1Page implements OnInit {
   imageUrls: string[] = [];
   imageUrl!: string;
 
@@ -23,6 +23,11 @@ export class Tab1Page implements OnInit{
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab1');
     this.titleService.setTitle('The Main Building');
+
+    this.route.queryParams.subscribe(params => {
+      this.imageUrl = params['imageUrl'] || this.selectedImageService.getSelectedImage();
+    });
+    console.log(this.imageUrl)
   }
 
   async generateImages() {
@@ -43,16 +48,9 @@ export class Tab1Page implements OnInit{
   ngOnInit() {
     // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
     // this.imageUrl = this.selectedImageService.getSelectedImage();
-    this.route.queryParams.subscribe(params => {
-      this.imageUrl = params['imageUrl'];
-    });
-    console.log(this.imageUrl)
-  }
-  afterRender() {
-    // this.imageUrl = this.selectedImageService.getSelectedImage();
+    // this.route.queryParams.subscribe(params => {
+    //   this.imageUrl = params['imageUrl'];
+    // });
     // console.log(this.imageUrl)
-    this.route.queryParams.subscribe(params => {
-      this.imageUrl = params['imageUrl'];
-    });
   }
 }

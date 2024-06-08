@@ -7,6 +7,14 @@
   background: transparent; /* Ensure the background is transparent */
 }
 
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 .images-container {
   display: flex;
   flex-wrap: wrap;

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   onButtonClick() {
-    // console.log('Button clicked!');
+    console.log('ROUTE: ' + this.router.url)
     this.router.navigate(['/tabs/tab0'], { queryParams: { previousTab: this.router.url } })
   }
 }
