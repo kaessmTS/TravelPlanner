@@ -14,7 +14,6 @@ export class Tab3Page {
     localStorage.setItem('selectedTab', 'tab3');
   }
   ngOnInit() {
-    // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
     this.titleService.setTitle('Tsinghua Auditorium');
   }
 }

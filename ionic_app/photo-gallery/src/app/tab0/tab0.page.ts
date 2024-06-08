@@ -42,8 +42,8 @@ export class Tab0Page implements OnInit{
     }
   }
   ngOnInit() {
-    this.generateImages(); // UNCOMMENT THIS LINE TO GENERATE IMAGES
     this.titleService.setTitle('Choose Your Character');
+    this.generateImages(); // UNCOMMENT THIS LINE TO GENERATE IMAGES
     this.route.queryParams.subscribe(params => { // Get the previous tab to know where to go after choosing the character
       this.previousTab = params['previousTab'];
     });
@@ -56,7 +56,9 @@ export class Tab0Page implements OnInit{
   // Submit the choice of a character
   onButtonClick() {
     // console.log('Button clicked!');
-    this.router.navigateByUrl(this.previousTab)
-    // this.router.navigate([this.previousTab], { queryParams: { imageUrl: this.router.url } })
+    // this.router.navigateByUrl(this.previousTab)
+    const selectedImageUrl = this.selectedImageService.getSelectedImage();
+    console.log('Image: ' + selectedImageUrl)
+    this.router.navigate([this.previousTab], { queryParams: { imageUrl: selectedImageUrl } });
   }
 }

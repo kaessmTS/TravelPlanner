@@ -1,8 +1,8 @@
-// import { Component } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { DalleImageService } from '../services/dalle-image.service';  // Adjust the path as necessary
 import { TitleService } from '../services/title.service';
 import { SelectedImageService } from '../services/selected-image.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -16,7 +16,8 @@ export class Tab1Page implements OnInit{
   constructor(
     private dalleImageService: DalleImageService, 
     private titleService: TitleService,
-    private selectedImageService: SelectedImageService
+    private selectedImageService: SelectedImageService,
+    private route: ActivatedRoute
   ) {}
 
   ionViewWillEnter() {
@@ -42,6 +43,19 @@ export class Tab1Page implements OnInit{
     // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
     this.titleService.setTitle('The Main Building');
     // this.imageUrl = this.selectedImageService.getSelectedImage();
-    // console.log(this.imageUrl)
+    this.route.queryParams.subscribe(params => {
+      this.imageUrl = params['imageUrl'];
+    });
+    console.log(this.imageUrl)
   }
+  afterRender() {
+    // this.imageUrl = this.selectedImageService.getSelectedImage();
+    // console.log(this.imageUrl)
+    this.route.queryParams.subscribe(params => {
+      this.imageUrl = params['imageUrl'];
+    });
+  }
+  // ngDoCheck() {
+  //   this.titleService.setTitle('The Main Building');
+  // }
 }

@@ -83,3 +83,10 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
+  .character-image {
+    width: fit-content;
+    height: 25%;
+    align-self: flex-end;
+    margin-bottom: 80px;
+    margin-left: 50px;
+  }

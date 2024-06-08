@@ -14,7 +14,6 @@ export class Tab2Page {
     localStorage.setItem('selectedTab', 'tab2');
   }
   ngOnInit() {
-    // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
     this.titleService.setTitle('Tsinghua Xuetang');
   }
 }
