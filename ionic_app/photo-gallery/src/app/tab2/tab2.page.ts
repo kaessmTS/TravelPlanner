@@ -12,8 +12,6 @@ export class Tab2Page {
 
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab2');
-  }
-  ngOnInit() {
     this.titleService.setTitle('Tsinghua Xuetang');
   }
 }

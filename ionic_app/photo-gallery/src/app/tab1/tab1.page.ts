@@ -22,6 +22,7 @@ export class Tab1Page implements OnInit{
 
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab1');
+    this.titleService.setTitle('The Main Building');
   }
 
   async generateImages() {
@@ -41,7 +42,6 @@ export class Tab1Page implements OnInit{
   }
   ngOnInit() {
     // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
-    this.titleService.setTitle('The Main Building');
     // this.imageUrl = this.selectedImageService.getSelectedImage();
     this.route.queryParams.subscribe(params => {
       this.imageUrl = params['imageUrl'];
@@ -55,7 +55,4 @@ export class Tab1Page implements OnInit{
       this.imageUrl = params['imageUrl'];
     });
   }
-  // ngDoCheck() {
-  //   this.titleService.setTitle('The Main Building');
-  // }
 }

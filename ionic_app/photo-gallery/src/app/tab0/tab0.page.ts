@@ -24,6 +24,7 @@ export class Tab0Page implements OnInit{
 
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab0');
+    this.titleService.setTitle('Choose Your Character');
   }
 
   async generateImages() {
@@ -42,7 +43,6 @@ export class Tab0Page implements OnInit{
     }
   }
   ngOnInit() {
-    this.titleService.setTitle('Choose Your Character');
     this.generateImages(); // UNCOMMENT THIS LINE TO GENERATE IMAGES
     this.route.queryParams.subscribe(params => { // Get the previous tab to know where to go after choosing the character
       this.previousTab = params['previousTab'];

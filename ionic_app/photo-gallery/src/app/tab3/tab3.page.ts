@@ -12,8 +12,6 @@ export class Tab3Page {
 
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab3');
-  }
-  ngOnInit() {
     this.titleService.setTitle('Tsinghua Auditorium');
   }
 }
