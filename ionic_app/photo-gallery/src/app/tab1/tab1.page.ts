@@ -30,21 +30,21 @@ export class Tab1Page implements OnInit {
     console.log(this.imageUrl)
   }
 
-  async generateImages() {
-    try {
-      const imagePromises = [
-        this.dalleImageService.generateCartoonCharacterImage(),
-        this.dalleImageService.generateCartoonCharacterImage(),
-        this.dalleImageService.generateCartoonCharacterImage(),
-        this.dalleImageService.generateCartoonCharacterImage()
-      ];
+  // async generateImages() {
+  //   try {
+  //     const imagePromises = [
+  //       this.dalleImageService.generateCartoonCharacterImage(),
+  //       this.dalleImageService.generateCartoonCharacterImage(),
+  //       this.dalleImageService.generateCartoonCharacterImage(),
+  //       this.dalleImageService.generateCartoonCharacterImage()
+  //     ];
 
-      this.imageUrls = await Promise.all(imagePromises);
-      console.log('Generated Image URLs:', this.imageUrls);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
+  //     this.imageUrls = await Promise.all(imagePromises);
+  //     console.log('Generated Image URLs:', this.imageUrls);
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // }
   ngOnInit() {
     // this.generateImages(); // UNCOMMENT THIS TO GENERATE IMAGES
     // this.imageUrl = this.selectedImageService.getSelectedImage();

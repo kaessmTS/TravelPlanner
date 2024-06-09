@@ -16,7 +16,7 @@ export class DalleImageService {
   async generateCartoonCharacterImage(): Promise<string> {
     try {
       const response = await axios.post(this.apiEndpoint, {
-        prompt: 'human manga character, transparent background, warm colours, manga 2d style',
+        prompt: 'human manga character, transparent background, warm colours, manga 2d style, Best Quality, 4K',
         n: 1,
         size: '256x256'
       }, {

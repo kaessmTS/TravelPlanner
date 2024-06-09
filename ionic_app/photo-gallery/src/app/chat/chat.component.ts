@@ -80,12 +80,12 @@ export class ChatComponent implements OnInit {
     return this.messages.slice(-3);
   }
 
-  async generateImage() {
-    try {
-      this.imageUrl = await this.dalleImageService.generateCartoonCharacterImage();
-      console.log('Generated Image URL:', this.imageUrl);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
+  // async generateImage() {
+  //   try {
+  //     this.imageUrl = await this.dalleImageService.generateCartoonCharacterImage();
+  //     console.log('Generated Image URL:', this.imageUrl);
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // }
 }

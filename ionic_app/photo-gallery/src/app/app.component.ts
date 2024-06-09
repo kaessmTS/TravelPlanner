@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
   }
 
   checkRoute() {
-    this.isTab0 = this.router.url.includes('/tab0');
+    if (this.router.url.includes('/tab0') || this.router.url.includes('/tab-mode'))
+      this.isTab0 = true;
+    else this.isTab0 = false;
   }
 
   onButtonClick() {

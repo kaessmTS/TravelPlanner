@@ -14,6 +14,7 @@ export class Tab0Page implements OnInit {
   selectedImageIndex: number | null = null;
   previousTab!: string;
   loading: boolean = true;
+  // imagePrompt!: string;
 
   constructor(private dalleImageService: DalleImageService, 
     private titleService: TitleService,
@@ -25,16 +26,21 @@ export class Tab0Page implements OnInit {
   ionViewWillEnter() {
     localStorage.setItem('selectedTab', 'tab0');
     this.titleService.setTitle('Choose Your Character');
+    // this.route.queryParams.subscribe(params => {
+    //   this.imagePrompt = params['imagePrompt'];
+    // });
   }
 
   async generateImages() {
     this.loading = true;
     try {
+      // console.log(this.imagePrompt)
       const imagePromises = [
         this.dalleImageService.generateCartoonCharacterImage(),
         this.dalleImageService.generateCartoonCharacterImage(),
         this.dalleImageService.generateCartoonCharacterImage(),
-        this.dalleImageService.generateCartoonCharacterImage()
+        this.dalleImageService.generateCartoonCharacterImage(),
+        // this.dalleImageService.generateCartoonCharacterImage(this.imagePrompt)
       ];
 
       this.imageUrls = await Promise.all(imagePromises);
@@ -58,6 +64,9 @@ export class Tab0Page implements OnInit {
     this.route.queryParams.subscribe(params => { // Get the previous tab to know where to go after choosing the character
       this.previousTab = params['previousTab'];
     });
+    // this.route.queryParams.subscribe(params => {
+    //   this.imagePrompt = params['imagePrompt'];
+    // });
   }
   // Select a character
   selectImage(index: number) {
