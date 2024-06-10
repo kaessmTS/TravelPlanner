@@ -31,8 +31,9 @@ export class TabModePage implements OnInit {
 
   }
   // Submit the choice of a character
-  onButtonClick(param: string) {
-    // this.router.navigate(['/tabs/tab0'], { queryParams: { imagePrompt: param } });
-    this.router.navigate(['/tabs/tab0'])
+  onButtonClick(param: string, path: string) {
+    console.log(path)
+    this.router.navigate([path], { queryParams: { imagePrompt: param } });
+    // this.router.navigate(['/tabs/tab0'])
   }
 }

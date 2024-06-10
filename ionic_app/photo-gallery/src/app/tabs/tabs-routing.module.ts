@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../tab-choose-mode/tab-mode.module').then(m => m.TabModePageModule)
       },
       {
+        path: 'tab-animal',
+        loadChildren: () => import('../tab-animal/tab-animal.module').then(m => m.TabAnimalPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

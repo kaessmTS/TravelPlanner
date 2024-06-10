@@ -5,16 +5,16 @@ import { TitleService } from '../services/title.service';
 import { SelectedImageService } from '../services/selected-image.service';
 
 @Component({
-  selector: 'app-tab0',
-  templateUrl: 'tab0.page.html',
-  styleUrls: ['tab0.page.scss']
+  selector: 'app-tab-animal',
+  templateUrl: 'tab-animal.page.html',
+  styleUrls: ['tab-animal.page.scss']
 })
-export class Tab0Page implements OnInit {
+export class TabAnimalPage implements OnInit {
   imageUrls: string[] = [];
   selectedImageIndex: number | null = null;
   previousTab!: string;
   loading: boolean = true;
-  imagePrompt: string = 'human manga character, transparent background, warm colours, manga 2d style, Best Quality, 4K';
+  imagePrompt: string = 'cute animal, transparent background, warm colours, manga 2d style, Best Quality, 4K';
 
   constructor(private dalleImageService: DalleImageService, 
     private titleService: TitleService,
@@ -48,7 +48,7 @@ export class Tab0Page implements OnInit {
       ];
 
       this.imageUrls = await Promise.all(imagePromises);
-      this.dalleImageService.setImageUrls(this.imageUrls);
+      this.dalleImageService.setAnimalUrls(this.imageUrls);
       console.log('Generated Image URLs:', this.imageUrls);
     } catch (error) {
       console.error('Error:', error);
@@ -57,7 +57,7 @@ export class Tab0Page implements OnInit {
     }
   }
   ngOnInit() {
-    const savedImageUrls = this.dalleImageService.getImageUrls();
+    const savedImageUrls = this.dalleImageService.getAnimalUrls();
     if (savedImageUrls) {
       this.imageUrls = savedImageUrls;
       this.loading = false;

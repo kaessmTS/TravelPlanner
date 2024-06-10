@@ -10,13 +10,14 @@ export class DalleImageService {
   private apiKey: string = environment.openaiApiKey;  // Replace with your OpenAI API key
   private apiEndpoint: string = 'https://api.openai.com/v1/images/generations';
   private imageUrls: string[] | null = null;
+  private animalUrls: string[] | null = null;
 
   constructor() { }
 
-  async generateCartoonCharacterImage(): Promise<string> {
+  async generateCartoonCharacterImage(imagePrompt: string): Promise<string> {
     try {
       const response = await axios.post(this.apiEndpoint, {
-        prompt: 'human manga character, transparent background, warm colours, manga 2d style, Best Quality, 4K',
+        prompt: imagePrompt,
         n: 1,
         size: '256x256'
       }, {
@@ -40,5 +41,13 @@ export class DalleImageService {
 
   getImageUrls(): string[] | null {
     return this.imageUrls;
+  }
+
+  setAnimalUrls(urls: string[]) {
+    this.animalUrls = urls;
+  }
+
+  getAnimalUrls(): string[] | null {
+    return this.animalUrls;
   }
 }
