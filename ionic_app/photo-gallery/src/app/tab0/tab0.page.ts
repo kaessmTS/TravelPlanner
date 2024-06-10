@@ -14,7 +14,7 @@ export class Tab0Page implements OnInit {
   selectedImageIndex: number | null = null;
   previousTab!: string;
   loading: boolean = true;
-  imagePrompt: string = 'human manga character, transparent background, warm colours, manga 2d style, Best Quality, 4K';
+  imagePrompt: string = 'human manga character, white background, warm colours, manga 2d style, Best Quality, 4K';
 
   constructor(private dalleImageService: DalleImageService, 
     private titleService: TitleService,
@@ -27,20 +27,20 @@ export class Tab0Page implements OnInit {
     localStorage.setItem('selectedTab', 'tab0');
     this.titleService.setTitle('Choose Your Character');
     this.route.queryParams.subscribe(params => {
-      this.imagePrompt = params['imagePrompt'];
+      if (params['imagePrompt']) {
+        this.imagePrompt = params['imagePrompt'];
+      }
+      if (params['previousTab']) {
+        this.previousTab = params['previousTab'];
+      }
     });
-    console.log(this.imagePrompt)
+    console.log(this.imagePrompt);
   }
 
   async generateImages() {
     this.loading = true;
     try {
-      // console.log(this.imagePrompt)
       const imagePromises = [
-        // this.dalleImageService.generateCartoonCharacterImage(),
-        // this.dalleImageService.generateCartoonCharacterImage(),
-        // this.dalleImageService.generateCartoonCharacterImage(),
-        // this.dalleImageService.generateCartoonCharacterImage(),
         this.dalleImageService.generateCartoonCharacterImage(this.imagePrompt),
         this.dalleImageService.generateCartoonCharacterImage(this.imagePrompt),
         this.dalleImageService.generateCartoonCharacterImage(this.imagePrompt),
@@ -68,21 +68,35 @@ export class Tab0Page implements OnInit {
     this.route.queryParams.subscribe(params => { // Get the previous tab to know where to go after choosing the character
       this.previousTab = params['previousTab'];
     });
-    // this.route.queryParams.subscribe(params => {
-    //   this.imagePrompt = params['imagePrompt'];
-    // });
   }
   // Select a character
   selectImage(index: number) {
     this.selectedImageIndex = index; // Remember the index of chosen image
-    this.selectedImageService.setSelectedImage(this.imageUrls[index]);
+
+    const previousUrlTree = this.router.parseUrl(this.previousTab);  
+    const previousUrlPath = previousUrlTree.root.children['primary'].segments.map(segment => segment.path).join('/');
+    if (previousUrlPath == 'tabs/tab1') {
+      this.selectedImageService.setSelectedImage(this.imageUrls[index]);
+    } else if (previousUrlPath == 'tabs/tab2') {
+      this.selectedImageService.setSelectedImage1(this.imageUrls[index]);
+    } else if (previousUrlPath == 'tabs/tab3') {
+      this.selectedImageService.setSelectedImage2(this.imageUrls[index]);
+    }
   }
   // Submit the choice of a character
   onButtonClick() {
-    const selectedImageUrl = this.selectedImageService.getSelectedImage();
+    let selectedImageUrl;
     const previousUrlTree = this.router.parseUrl(this.previousTab);
     const previousUrlPath = previousUrlTree.root.children['primary'].segments.map(segment => segment.path).join('/');
     
+    if (previousUrlPath == 'tabs/tab1') {
+      selectedImageUrl = this.selectedImageService.getSelectedImage();
+    } else if (previousUrlPath == 'tabs/tab2') {
+      selectedImageUrl = this.selectedImageService.getSelectedImage1();
+    } else if (previousUrlPath == 'tabs/tab3') {
+      selectedImageUrl = this.selectedImageService.getSelectedImage2();
+    }
+
     console.log('Navigating to:', previousUrlPath);
     console.log('With image URL:', selectedImageUrl);
 

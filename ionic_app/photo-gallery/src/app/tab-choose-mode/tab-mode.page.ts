@@ -28,12 +28,13 @@ export class TabModePage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.route.queryParams.subscribe(params => {
+      this.previousTab = params['previousTab'];
+    });
   }
   // Submit the choice of a character
   onButtonClick(param: string, path: string) {
-    console.log(path)
-    this.router.navigate([path], { queryParams: { imagePrompt: param } });
-    // this.router.navigate(['/tabs/tab0'])
+    console.log(path);
+    this.router.navigate([path], { queryParams: { imagePrompt: param, previousTab: this.previousTab } });
   }
 }

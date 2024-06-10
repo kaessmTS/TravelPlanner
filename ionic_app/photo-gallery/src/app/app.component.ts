@@ -21,13 +21,13 @@ export class AppComponent implements OnInit {
   }
 
   checkRoute() {
-    if (this.router.url.includes('/tab0') || this.router.url.includes('/tab-mode'))
+    if (this.router.url.includes('/tab0') || this.router.url.includes('/tab-mode') || this.router.url.includes('/tab-animal'))
       this.isTab0 = true;
     else this.isTab0 = false;
   }
 
   onButtonClick() {
     console.log('ROUTE: ' + this.router.url)
-    this.router.navigate(['/tabs/tab0'], { queryParams: { previousTab: this.router.url } })
+    this.router.navigate(['/tabs/tab-mode'], { queryParams: { previousTab: this.router.url } })
   }
 }

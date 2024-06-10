@@ -20,6 +20,7 @@
   justify-content: space-around;
   align-items: center;
   padding: 60px;
+  background: burlywood;
 }
 
 .custom-button {
@@ -27,7 +28,7 @@
   align-items: center;
   justify-content: space-between;
   width: 80%;
-  --background: transparent;
+  --background: white;
   color: black;
   // font-size: xx-large;
   font-size: 2rem;

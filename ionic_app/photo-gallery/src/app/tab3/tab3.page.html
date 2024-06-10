@@ -1,11 +1,3 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tsinghua Auditorium
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true" class="content-container">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -16,6 +8,10 @@
   <div class="image-container">
     <img src="assets/backgroundBuildings/building_3.jpg" alt="Building Image" class="building-image">
     <div class="image-overlay"></div>
+  </div>
+
+  <div *ngIf="imageUrl" class="image-container">
+    <img [src]="imageUrl" alt="Character" class="character-image">
   </div>
   
   <div class="overlay-content">
